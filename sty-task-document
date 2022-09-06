@@ -1,0 +1,141 @@
+Task document -1 
+
+1.	Create a Docker image:
+●	Use centos or ubuntu as the base image
+●	Install apache web server
+
+vi Dockerfile
+
+FROM centos:latest
+
+RUN yum install httpd -y
+
+COPY ./var/www/html/
+
+EXPOSE 80
+
+docker build -t myimage2 .
+
+docker run -itd --name container23 -p 80:80 myimage2 
+
+-------------------------------------------------------
+
+Task 1 with nginx ******
+
+vi Dockerfile 
+FROM nginx:alpine 
+COPY ./index.html /usr/share/nginx/html
+
+
+Index.html file 
+
+!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Docker Nginx</title>
+</head>
+<body>
+  <h2>Hello from Nginx container. how are you all</h2>
+</body>
+</html>>
+root@nitin-virtual-machine:~/task1a# 
+
+
+docker build -t nginximage5 .
+
+docker run -itd --name nginxcontainer -p 8080:80 nginximage5 
+-------------------------------------------------------
+
+Task 2 
+TASK 2
+https://github.com/kumail1232/slack-docker
+● Clone this repo
+● Create a Dockerfile to Dockerize a react application
+● Run that container using a Docker Compose file 
+
+1St crreate react app
+npm create-react-app react-application 
+cd whalified
+yarn start
+
+vi Dockerfile 
+
+FROM node:18-alpine
+WORKDIR /frontend
+COPY ./*.json /frontend/
+RUN npm install
+#RUN npm audit fix --force
+RUN yarn add react-scripts
+# add app
+COPY . .
+EXPOSE 3000
+CMD ["npm", "start"]
+
+
+This tells Docker to:
+
+Build an image starting with the node:18-alpine
+Set the working directory to /frontend 
+Copy ./*.json to workdir 
+Install npm install
+react script 
+Copy the current directory . in the project to the workdir .
+container is listening on port 3000
+( it allows you to experiment with express without root access)
+Set the default command for the container to "npm", "start".
+
+
+docker build -t reactimage .
+
+----------------------------------------------------------
+
+Docker composefile 
+
+docker-compose.yml
+
+version: '3.3'
+
+services:
+  FrontEnd:
+     image: react-image
+     ports:
+       - "3000:3000"
+
+
+To build the stack, go back to the terminal window, make sure you’re in your build directory, and issue the command:
+
+#docker-compose up
+
+The above command will deploy both the web and db containers. If you only run that command, the containers will deploy in attached mode, so you won’t get your bash prompt returned. If you want to run them in detached mode, you’d issue the command:
+
+docker-compose up -d 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
