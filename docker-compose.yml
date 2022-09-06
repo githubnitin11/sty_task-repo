@@ -1,0 +1,7 @@
+version: '3.3'
+
+services:
+  FrontEnd:
+     image: react-image
+     ports:
+       - "3000:3000"
