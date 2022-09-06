@@ -112,7 +112,8 @@ The above command will deploy both the web and db containers. If you only run th
 docker-compose up -d 
 
 
-
+to access this app on browser use 
+http://localhost:3000/
 
 
 
