@@ -16,7 +16,12 @@ EXPOSE 80
 
 docker build -t myimage2 .
 
-docker run -itd --name container23 -p 80:80 myimage2 
+docker run -itd --name container23 -p 80:80 myimage2  
+
+
+to access this app on browser use
+
+0.0.0.0:80
 
 -------------------------------------------------------
 
@@ -45,6 +50,12 @@ root@nitin-virtual-machine:~/task1a#
 docker build -t nginximage5 .
 
 docker run -itd --name nginxcontainer -p 8080:80 nginximage5 
+
+
+
+to access this app on browser use
+
+0.0.0.0:8080
 -------------------------------------------------------
 
 Task 2 
